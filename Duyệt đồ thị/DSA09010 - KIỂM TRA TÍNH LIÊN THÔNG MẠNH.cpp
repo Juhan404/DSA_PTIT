@@ -29,7 +29,7 @@ void DFS(int u) {
     visited[u] = 1;
     for (int x : near[u]) {
         if (!visited[x])
-            BFS(x);
+            DFS(x);
     }
 }
 
@@ -48,7 +48,6 @@ void input() {
         cin >> x >> y;
 
         near[x].pb(y);
-        near[y].pb(x);
     }
 }
 
@@ -64,7 +63,10 @@ void run_case() {
         }
     }
 
-    cout << res << endl;
+    if (res == 1)
+        cout << "YES\n";
+    else
+        cout << "NO\n";
 
     reset();
 }

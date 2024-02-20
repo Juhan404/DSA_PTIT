@@ -22,14 +22,14 @@ using pii = pair<int, int>;
 const int MOD = 1e9 + 7;
 const int N = 1e5 + 5;
 
-int n, m, visited[1005];
+int n, m, visited[1005], tplt = 0;
 vector<int> near[1005];
 
 void DFS(int u) {
     visited[u] = 1;
     for (int x : near[u]) {
         if (!visited[x])
-            BFS(x);
+            DFS(x);
     }
 }
 
@@ -38,6 +38,7 @@ void reset() {
         near[i].clear();
     }
     memset(visited, 0, sizeof(visited));
+    tplt = 0;
 }
 
 void input() {
@@ -55,16 +56,32 @@ void input() {
 void run_case() {
     input();
 
-    int res = 0;
-
     FOR(i, 1, n) {
         if (!visited[i]) {
-            ++res;
+            ++tplt;
             DFS(i);
         }
     }
 
-    cout << res << endl;
+    FOR(i, 1, n) {
+        memset(visited, 0, sizeof(visited));
+        visited[i] = 1;
+
+        int cnt = 0;
+
+        FOR(j, 1, n) {
+            if (!visited[j]) {
+                ++cnt;
+                DFS(j);
+            }
+        }
+
+        if (cnt > tplt)
+            cout << i << " ";
+
+        visited[i] = 0;
+    }
+    cout << endl;
 
     reset();
 }
