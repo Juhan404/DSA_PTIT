@@ -22,15 +22,15 @@ using pii = pair<int, int>;
 const int MOD = 1e9 + 7;
 const int N = 1e5 + 5;
 
-ll n, k, F[93], X[93];
+ll n, k, F[50], X[50];
 
 void prepare() {
     F[0] = 1, F[1] = 1;
-    FOR(i, 2, 92) {
+    FOR(i, 2, 49) {
         F[i] = F[i - 1] + F[i - 2];
     }
     X[0] = 1, X[1] = 0;
-    FOR(i, 2, 92) {
+    FOR(i, 2, 49) {
         X[i] = X[i - 1] + X[i - 2];
     }
 }

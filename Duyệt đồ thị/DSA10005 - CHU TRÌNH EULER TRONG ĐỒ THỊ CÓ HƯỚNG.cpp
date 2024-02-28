@@ -26,17 +26,17 @@ void run_case() {
     int n, m;
     cin >> n >> m;
 
-    map<int, pii> mp;
+    map<int, pii> deg;
 
     FOR(i, 1, m) {
         int u, v;
         cin >> u >> v;
 
-        mp[u].se++;
-        mp[v].fi++;
+        deg[u].se++;
+        deg[v].fi++;
     }
 
-    for (auto x : mp) {
+    for (auto x : deg) {
         if (x.se.fi != x.se.se) {
             cout << 0 << endl;
             return;
