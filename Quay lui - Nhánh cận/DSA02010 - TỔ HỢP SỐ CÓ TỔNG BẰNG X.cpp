@@ -24,7 +24,7 @@ const int N = 1e5 + 5;
 
 int n, k, a[25], check = 0;
 
-void back_track(int start, int cur_sum, string s) {
+void back_tracking(int start, int cur_sum, string s) {
     if (cur_sum == k) {
         check = 1;
         s.ppb();
@@ -34,7 +34,7 @@ void back_track(int start, int cur_sum, string s) {
     }
     else if (cur_sum < k) {
         FOR(i, start, n) {
-            back_track(i, cur_sum + a[i], s + to_string(a[i]) + " ");
+            back_tracking(i, cur_sum + a[i], s + to_string(a[i]) + " ");
         }
     }
 }
@@ -45,7 +45,7 @@ void run_case() {
         cin >> a[i];
     }
 
-    back_track(1, 0, "[");
+    back_tracking(1, 0, "[");
 
     if (!check)
         cout << -1;

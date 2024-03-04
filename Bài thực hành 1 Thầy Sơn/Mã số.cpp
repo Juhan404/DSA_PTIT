@@ -25,20 +25,20 @@ const int N = 1e5 + 5;
 int n;
 vector<string> v;
 
-void back_track(string s) {
+void back_tracking(string s) {
     if (sz(s) == n) {
         v.pb(s);
         return;
     }
     FOR(i, 1, n) {
-        back_track(s + to_string(i));
+        back_tracking(s + to_string(i));
     }
 }
 
 void run_case() {
     cin >> n;
 
-    back_track("");
+    back_tracking("");
 
     string ans = "";
     FOR(i, 1, n) {

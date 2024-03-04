@@ -22,12 +22,12 @@ const int N = 1e5 + 5;
 
 vector<ll> dat09;
 
-void backtrack(int t, string s) {
+void back_tracking(int t, string s) {
     if (sz(s) == t)
         dat09.pb(stoll(s));
     else {
-        backtrack(t, s + '0');
-        backtrack(t, s + '9');
+        back_tracking(t, s + '0');
+        back_tracking(t, s + '9');
     }
 }
 
@@ -54,7 +54,7 @@ int main() {
     cin >> T;
 
     FOR(i, 1, 10) {
-        backtrack(i, "");
+        back_tracking(i, "");
     }
 
     for (int test = 1; test <= T; test++) {

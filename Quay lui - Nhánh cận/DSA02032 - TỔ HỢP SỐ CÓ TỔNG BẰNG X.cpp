@@ -23,7 +23,7 @@ const int N = 1e5 + 5;
 int n, k, a[25];
 vector<string> v;
 
-void back_track(int start, int sum, string s) {
+void back_tracking(int start, int sum, string s) {
     if (sum == k) {
         s.pop_back();
         v.pb(s);
@@ -31,7 +31,7 @@ void back_track(int start, int sum, string s) {
     }
     else if (sum < k) {
         FOR(i, start, n) {
-            back_track(i, sum + a[i], s + to_string(a[i]) + " ");
+            back_tracking(i, sum + a[i], s + to_string(a[i]) + " ");
         }
     }
 }
@@ -45,7 +45,7 @@ void run_case() {
 
     sort(a + 1, a + 1 + n);
 
-    back_track(1, 0, "");
+    back_tracking(1, 0, "");
 
     if (!sz(v)) {
         cout << -1 << endl;

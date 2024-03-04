@@ -26,20 +26,20 @@ string s;
 int k;
 set<string> ans;
 
-void back_track(string res, int start) {
+void back_tracking(string res, int start) {
     if (sz(res) == k) {
         ans.insert(res);
         return;
     }
     FOR(i, start, sz(s) - 1) {
-        back_track(res + s[i], i + 1);
+        back_tracking(res + s[i], i + 1);
     }
 }
 
 void run_case() {
     cin >> s >> k;
 
-    back_track("", 0);
+    back_tracking("", 0);
 
     for (string s : ans)
         cout << s << endl;

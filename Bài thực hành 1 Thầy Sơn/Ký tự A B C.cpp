@@ -25,22 +25,22 @@ const int N = 1e5 + 5;
 int n;
 vector<string> v;
 
-void back_track(string s, int A, int B, int C) {
+void back_tracking(string s, int A, int B, int C) {
     if (sz(s) <= n) {
         if (A && B && C && A <= B && B <= C)
             v.pb(s);
         if (sz(s) == n)
             return;
     }
-    back_track(s + 'A', A + 1, B, C);
-    back_track(s + 'B', A, B + 1, C);
-    back_track(s + 'C', A, B, C + 1);
+    back_tracking(s + 'A', A + 1, B, C);
+    back_tracking(s + 'B', A, B + 1, C);
+    back_tracking(s + 'C', A, B, C + 1);
 }
 
 void run_case() {
     cin >> n;
 
-    back_track("", 0, 0, 0);
+    back_tracking("", 0, 0, 0);
 
     sort(v.begin(), v.end(), [](string a, string b) {
         return sz(a) != sz(b) ? sz(a) < sz(b) : a < b;

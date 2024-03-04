@@ -3,7 +3,7 @@ using namespace std;
 
 #define FOR(i, a, b) for (auto i = (a); i <= (b); ++i)
 #define ROF(i, a, b) for (auto i = (a); i >= (b); --i)
-#define sz(x) (int) (x).size()
+#define sz(x) (int)(x).size()
 #define pb push_back
 #define endl '\n'
 #define fi first
@@ -16,7 +16,7 @@ using namespace std;
 #endif
 
 using ll = long long;
-using pii = pair <int, int>;
+using pii = pair<int, int>;
 
 const ll INF = 1e9 + 69;
 const int MOD = 1e9 + 7;
@@ -25,53 +25,59 @@ const int MAXN = 1e6 + 5;
 int n;
 
 bool check(string s) {
-	if (s[0] != '8' || s[sz(s) - 1] != '6') return false;
-	int sau = 0, tam = 0;
-	for (char c : s) {
-		if (sau > 3 || tam >= 2) return false;
-		if (c == '6') {
-			tam = 0;
-			++sau;
-		}
-		else {
-			sau = 0;
-			++tam;
-		}
-	}
-	if (sau > 3 || tam >= 2) return false;
-	return true;
+    if (s[0] != '8' || s[sz(s) - 1] != '6')
+        return false;
+    int sau = 0, tam = 0;
+    for (char c : s) {
+        if (sau > 3 || tam >= 2)
+            return false;
+        if (c == '6') {
+            tam = 0;
+            ++sau;
+        }
+        else {
+            sau = 0;
+            ++tam;
+        }
+    }
+    if (sau > 3 || tam >= 2)
+        return false;
+    return true;
 }
 
-void backtrack(string s) {
-	if (sz(s) == n) {
-		if (check(s)) cout <<  s << endl;
-		return;
-	}
-	FOR(i, 0, 1) {
-		if (i == 0) backtrack(s + '6');
-		else backtrack(s + '8');
-	}
+void back_tracking(string s) {
+    if (sz(s) == n) {
+        if (check(s))
+            cout << s << endl;
+        return;
+    }
+    FOR(i, 0, 1) {
+        if (i == 0)
+            back_tracking(s + '6');
+        else
+            back_tracking(s + '8');
+    }
 }
 
 void run_case() {
-	cin >> n;
+    cin >> n;
 
-	backtrack("");
+    back_tracking("");
 }
 
 int main() {
-	cin.tie(0) -> sync_with_stdio(0);
+    cin.tie(0)->sync_with_stdio(0);
 
 #ifdef Juhan404
-	freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
 
-	int test = 1;
-	// cin >> test;
+    int test = 1;
+    // cin >> test;
 
-	for (int tc = 1; tc <= test; tc++) {
-		// cout << "Test #" << tc << ": ";
-		run_case();
-	}
-	return 0;
+    for (int tc = 1; tc <= test; tc++) {
+        // cout << "Test #" << tc << ": ";
+        run_case();
+    }
+    return 0;
 }

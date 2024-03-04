@@ -22,12 +22,12 @@ const int N = 1e5 + 5;
 
 vector<ll> v;
 
-void back_track(string s) {
+void back_tracking(string s) {
     if (sz(s) == 18)
         v.push_back(stoll(s));
     else {
-        back_track(s + '0');
-        back_track(s + '1');
+        back_tracking(s + '0');
+        back_tracking(s + '1');
     }
 }
 
@@ -57,7 +57,7 @@ int main() {
     int T = 1;
     cin >> T;
 
-    back_track("");
+    back_tracking("");
 
     for (int test = 1; test <= T; test++) {
 

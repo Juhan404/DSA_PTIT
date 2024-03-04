@@ -22,13 +22,13 @@ const int N = 1e5 + 5;
 
 vector<string> v;
 
-void backtrack(string s) {
+void back_tracking(string s) {
     if (sz(s) > 14)
         return;
     else if (sz(s))
         v.pb(s);
-    backtrack(s + '6');
-    backtrack(s + '8');
+    back_tracking(s + '6');
+    back_tracking(s + '8');
 }
 
 void run_case() {
@@ -52,7 +52,7 @@ int main() {
     int T = 1;
     cin >> T;
 
-    backtrack("");
+    back_tracking("");
 
     sort(v.begin(), v.end(), [](string x, string y) {
         return (sz(x) != sz(y)) ? (sz(x) > sz(y)) : (x > y);

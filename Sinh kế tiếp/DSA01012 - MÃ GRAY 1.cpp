@@ -3,7 +3,7 @@ using namespace std;
 
 #define FOR(i, a, b) for (int i = (a); i <= (b); ++i)
 #define ROF(i, a, b) for (int i = (a); i >= (b); --i)
-#define sz(x) (int) (x).size()
+#define sz(x) (int)(x).size()
 #define pb push_back
 #define ppb pop_back
 #define endl '\n'
@@ -17,7 +17,7 @@ using namespace std;
 #endif
 
 using ll = long long;
-using pii = pair <int, int>;
+using pii = pair<int, int>;
 
 const int INF = 2e9;
 const int MOD = 1e9 + 7;
@@ -25,41 +25,43 @@ const int MAX = 1e6 + 5;
 
 int n;
 
-void backtrack(int i, string s) {
-	if (i == n) {
-		cout << s[0];
-		FOR(i, 1, sz(s) - 1) {
-			if (s[i - 1] != s[i]) cout << 1;
-			else cout << 0;
-		}
-		cout << ' ';
-		return;
-	}
-	FOR(j, 0, 1) {
-		backtrack(i + 1, s + to_string(j));
-	}
+void back_tracking(int i, string s) {
+    if (i == n) {
+        cout << s[0];
+        FOR(i, 1, sz(s) - 1) {
+            if (s[i - 1] != s[i])
+                cout << 1;
+            else
+                cout << 0;
+        }
+        cout << ' ';
+        return;
+    }
+    FOR(j, 0, 1) {
+        back_tracking(i + 1, s + to_string(j));
+    }
 }
 
 void run_case() {
-	cin >> n;
+    cin >> n;
 
-	backtrack(0, "");
+    back_tracking(0, "");
 
-	cout << '\n';
+    cout << '\n';
 }
 
 int main() {
-	cin.tie(0) -> sync_with_stdio(0);
+    cin.tie(0)->sync_with_stdio(0);
 #ifdef EmHoang666
-	freopen("Error.txt", "w", stderr);
+    freopen("Error.txt", "w", stderr);
 #endif
 
-	int Testcase = 1;
-	cin >> Testcase;
+    int Testcase = 1;
+    cin >> Testcase;
 
-	FOR(Test, 1, Testcase) {
-		// cout << "Case #" << Test << ": ";
-		run_case();
-	}
-	return 0;
+    FOR(Test, 1, Testcase) {
+        // cout << "Case #" << Test << ": ";
+        run_case();
+    }
+    return 0;
 }

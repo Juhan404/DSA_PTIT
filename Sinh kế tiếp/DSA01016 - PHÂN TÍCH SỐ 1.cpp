@@ -5,6 +5,7 @@ using namespace std;
 #define ROF(i, a, b) for (auto i = (a); i >= (b); --i)
 #define sz(x) (int)(x).size()
 #define pb push_back
+#define ppb pop_back
 #define endl '\n'
 #define fi first
 #define se second
@@ -18,24 +19,27 @@ using namespace std;
 using ll = long long;
 using pii = pair<int, int>;
 
-const ll INF = 1e9 + 69;
 const int MOD = 1e9 + 7;
-const int MAXN = 1e6 + 5;
+const int N = 1e5 + 5;
 
-int n;
+void back_tracking(int max_num, int remain, string s) {
+    if (remain == 0) {
+        s.ppb();
+        cout << s << ')' << ' ';
+        return;
+    }
 
-void back_tracking(string s) {
-    if (sz(s) == n)
-        cout << s << ' ';
-    else
-        FOR(i, 0, 1)
-    back_tracking(s + (char)('A' + i));
+    ROF(i, max_num, 1) {
+        if (i <= remain)
+            back_tracking(i, remain - i, s + to_string(i) + ' ');
+    }
 }
 
 void run_case() {
+    int n;
     cin >> n;
 
-    back_tracking("");
+    back_tracking(n, n, "(");
 
     cout << endl;
 }
@@ -47,11 +51,11 @@ int main() {
     freopen("Error.txt", "w", stderr);
 #endif
 
-    int test = 1;
-    cin >> test;
+    int T = 1;
+    cin >> T;
 
-    for (int tc = 1; tc <= test; tc++) {
-        // cout << "Test #" << tc << ": ";
+    for (int test = 1; test <= T; ++test) {
+
         run_case();
     }
     return 0;
