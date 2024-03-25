@@ -22,33 +22,32 @@ using pii = pair<int, int>;
 const int MOD = 1e9 + 7;
 const int N = 1e5 + 5;
 
-ll n, k, F[50], X[50];
-
-void prepare() {
-    F[0] = 1, F[1] = 1;
-    FOR(i, 2, 49) {
-        F[i] = F[i - 1] + F[i - 2];
-    }
-    X[0] = 1, X[1] = 0;
-    FOR(i, 2, 49) {
-        X[i] = X[i - 1] + X[i - 2];
-    }
-}
-
-ll Find(ll n, ll k) {
-    if (k == F[n])
-        return X[n];
-
-    if (k >= F[n - 1])
-        return X[n - 1] + Find(n - 2, k - F[n - 1]);
-    else
-        return Find(n - 1, k);
-}
+int k;
+string a, b;
 
 void run_case() {
-    cin >> n >> k;
+    cin >> k >> a >> b;
 
-    cout << Find(n, k) << endl;
+    while (sz(a) < sz(b))
+        a = "0" + a;
+
+    while (sz(b) < sz(a))
+        b = "0" + b;
+
+    string s = "";
+    int nho = 0;
+
+    ROF(i, sz(a) - 1, 0) {
+        int temp = (a[i] - '0') + (b[i] - '0') + nho;
+
+        s = (char)(temp % k + '0') + s;
+        nho = temp / k;
+    }
+
+    if (nho > 0)
+        s = (char)(nho + '0') + s;
+
+    cout << s << endl;
 }
 
 int main() {
@@ -60,8 +59,6 @@ int main() {
 
     int T = 1;
     cin >> T;
-
-    prepare();
 
     for (int test = 1; test <= T; ++test) {
 
