@@ -22,34 +22,51 @@ using pii = pair<int, int>;
 const int MOD = 1e9 + 7;
 const int N = 1e5 + 5;
 
-string a[15];
-string last_name;
-int x[15];
+int n, x[15];
+string last;
+vector<string> v, temp;
+vector<vector<string>> res;
+
+void back_tracking(int index) {
+    if (index == n + 1) {
+        res.pb(temp);
+        return;
+    }
+    FOR(i, 1, n) {
+        if (x[i] == 0) {
+            x[i] = 1;
+            temp.pb(v[i]);
+
+            back_tracking(index + 1);
+
+            temp.ppb();
+            x[i] = 0;
+        }
+    }
+}
 
 void run_case() {
-    int n;
     cin >> n;
 
+    v.resize(n + 1);
+
     FOR(i, 1, n) {
-        cin >> a[i];
+        cin >> v[i];
     }
-    cin >> last_name;
+    cin >> last;
 
-    sort(a + 1, a + n + 1);
+    sort(v.begin() + 1, v.end());
 
-    FOR(i, 1, n - 1) {
-        x[i] = i;
-        if (a[i] == last_name) {
-            swap(a[i], a[n]);
+    back_tracking(1);
+
+    for (auto i : res) {
+        if (i.back() == last) {
+            for (auto j : i) {
+                cout << j << " ";
+            }
+            cout << endl;
         }
     }
-
-    do {
-        FOR(i, 1, n - 1) {
-            cout << a[x[i]] << " ";
-        }
-        cout << last_name << endl;
-    } while (next_permutation(x + 1, x + n));
 }
 
 int main() {
